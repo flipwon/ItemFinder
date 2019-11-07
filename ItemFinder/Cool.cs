@@ -6,5 +6,6 @@ namespace ItemFinder
     public class Cool
     {
         int hi;
+        private int gy;
     }
 }
