@@ -9,6 +9,8 @@ namespace ItemFinder
         private int lol;
 
         private int gy;
+
+        private int hfjsdhj;
         private string cool;
     }
 }
