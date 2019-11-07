@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 
 namespace ItemFinder
 {
@@ -11,5 +12,6 @@ namespace ItemFinder
         private int gy;
 
         private int hfjsdhj;
+        private int anotherthing;
     }
 }
