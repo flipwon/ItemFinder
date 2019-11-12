@@ -71,6 +71,16 @@
     <Content Include="AdminEditForm.aspx" />
     <Content Include="AdminForm.aspx" />
     <Content Include="AdminSetupForm.aspx" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="App_Data\Database.mdf" />
+    <Content Include="App_Data\Database_log.ldf">
+      <DependentUpon>Database.mdf</DependentUpon>
+    </Content>
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="UserForm.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
@@ -103,6 +113,9 @@
     </Compile>
     <Compile Include="AdminSetupForm.aspx.designer.cs">
       <DependentUpon>AdminSetupForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ItemFinder.Master.cs">
       <DependentUpon>ItemFinder.Master</DependentUpon>
@@ -139,6 +152,8 @@
       <DependentUpon>ItemFinderDataSet.xsd</DependentUpon>
     </Content>
     <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

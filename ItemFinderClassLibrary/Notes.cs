@@ -11,7 +11,7 @@ namespace ItemFinderClassLibrary
         /*
          * Ask about sharing databases
          * Ask about live updates or download/push changes to database
-         *
+         * Use Range validator to validate Vector2 bounds compared to map bounds?
          * 
          *
          *
