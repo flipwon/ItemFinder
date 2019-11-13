@@ -13,19 +13,17 @@ namespace ItemFinderClassLibrary
         private int _id;
         private string _description;
         private float _price;
-        private bool _sale;
         private int _rating;
         private string _imagePath;
         private Vector2 _location;
         
         public Item(string name, int id, string description, float price, 
-            bool sale, string imagePath, Vector2 location, int rating = 0)
+            string imagePath, Vector2 location, int rating = 0)
         {
             Name = name;
             Id = id;
             Description = description;
             Price = price;
-            Sale = sale;
             Rating = rating;
             ImagePath = imagePath;
             Location = location;
@@ -54,12 +52,6 @@ namespace ItemFinderClassLibrary
         {
             get => _price;
             private set => _price = value;
-        }
-
-        public bool Sale
-        {
-            get => _sale;
-            private set => _sale = value;
         }
 
         public int Rating
