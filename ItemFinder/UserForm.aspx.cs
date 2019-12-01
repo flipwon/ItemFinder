@@ -39,11 +39,7 @@ namespace ItemFinder
 
             var filteredList = filtered.ToList();
 
-            //LblName.Text = _itemDataTable.ItemNameColumn.ToString();
-            if (filteredList.Count > 0)
-                LblName.Text = filteredList[0].ItemName;
-            else
-                LblName.Text = "";
+            LblName.Text = filteredList.Count > 0 ? filteredList[0].ItemName : "";
         }
     }
 }

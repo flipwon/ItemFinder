@@ -11,17 +11,19 @@ namespace ItemFinderClassLibrary
     {
         private string _name;
         private int _id;
+        private int _departmentId;
         private string _description;
         private float _price;
         private int _rating;
         private string _imagePath;
         private Vector2 _location;
         
-        public Item(string name, int id, string description, float price, 
+        public Item(string name, int id, int departmentId, string description, float price, 
             string imagePath, Vector2 location, int rating = 0)
         {
             Name = name;
             Id = id;
+            DepartmentId = departmentId;
             Description = description;
             Price = price;
             Rating = rating;
@@ -40,6 +42,12 @@ namespace ItemFinderClassLibrary
         {
             get => _id;
             private set => _id = value;
+        }
+
+        public int DepartmentId
+        {
+            get => _departmentId;
+            private set => _departmentId = value;
         }
 
         public string Description

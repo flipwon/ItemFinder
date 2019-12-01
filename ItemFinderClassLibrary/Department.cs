@@ -11,6 +11,7 @@ namespace ItemFinderClassLibrary
         private string _name;
         private int _id;
         private string _description;
+        private List<Item> _itemList = new List<Item>();
 
         public Department(string name, int id, string description)
         {
@@ -44,7 +45,7 @@ namespace ItemFinderClassLibrary
 
         public void AddItem(Item item)
         {
-            
+            //add to item list as well as db??
         }
 
         public Item EditItem(Item item)

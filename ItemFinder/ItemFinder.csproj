@@ -67,16 +67,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AddForm.aspx" />
-    <Content Include="AdminEditForm.aspx" />
-    <Content Include="AdminForm.aspx" />
-    <Content Include="AdminSetupForm.aspx" />
+    <Content Include="User\AddForm.aspx" />
+    <Content Include="Admin\AdminEditForm.aspx" />
+    <Content Include="Admin\AdminForm.aspx" />
+    <Content Include="Admin\AdminSetupForm.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="App_Data\Database.mdf" />
     <Content Include="App_Data\Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Login.aspx" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -85,32 +86,34 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddForm.aspx.cs">
+    <Compile Include="Logic\LoginHelper.cs" />
+    <Compile Include="Logic\UserDao.cs" />
+    <Compile Include="User\AddForm.aspx.cs">
       <DependentUpon>AddForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AddForm.aspx.designer.cs">
+    <Compile Include="User\AddForm.aspx.designer.cs">
       <DependentUpon>AddForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminEditForm.aspx.cs">
+    <Compile Include="Admin\AdminEditForm.aspx.cs">
       <DependentUpon>AdminEditForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminEditForm.aspx.designer.cs">
+    <Compile Include="Admin\AdminEditForm.aspx.designer.cs">
       <DependentUpon>AdminEditForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminForm.aspx.cs">
+    <Compile Include="Admin\AdminForm.aspx.cs">
       <DependentUpon>AdminForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminForm.aspx.designer.cs">
+    <Compile Include="Admin\AdminForm.aspx.designer.cs">
       <DependentUpon>AdminForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminSetupForm.aspx.cs">
+    <Compile Include="Admin\AdminSetupForm.aspx.cs">
       <DependentUpon>AdminSetupForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminSetupForm.aspx.designer.cs">
+    <Compile Include="Admin\AdminSetupForm.aspx.designer.cs">
       <DependentUpon>AdminSetupForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -127,6 +130,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ItemFinderDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserForm.aspx.cs">
@@ -166,6 +176,7 @@
       <Name>ItemFinderClassLibrary</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
