@@ -16,18 +16,16 @@ namespace ItemFinderClassLibrary
         private float _price;
         private int _rating;
         private string _imagePath;
-        private Vector2 _location;
+        private string _location;
         
-        public Item(string name, int id, int departmentId, string description, float price, 
-            string imagePath, Vector2 location, int rating = 0)
+        public Item(string name, int departmentId, string description, float price, 
+            string imagePath, string location)
         {
             Name = name;
-            Id = id;
             DepartmentId = departmentId;
             Description = description;
             Price = price;
-            Rating = rating;
-            ImagePath = imagePath;
+            //ImagePath = imagePath;
             Location = location;
         }
 
@@ -75,17 +73,19 @@ namespace ItemFinderClassLibrary
             {
 
                 //Validation checking for the inputted value
-                if (!string.IsNullOrEmpty(value) && File.Exists(value))
+                if (!string.IsNullOrEmpty(value) /*&& File.Exists(value)*/)
                 {
 
                     //Getting the extension of the file chosen
                     var fi = new FileInfo(value);
                     string ext = fi.Extension;
 
-                    if ((Equals(ext, ".png") || Equals(ext, ".jpg") || 
-                         Equals(ext, ".jpeg") || Equals(ext, ".gif"))){
+                    if ((Equals(ext, ".png") || Equals(ext, ".jpg") ||
+                         Equals(ext, ".jpeg") || Equals(ext, ".gif")))
+                    {
                         _imagePath = value;
-                    } else
+                    }
+                    else
                     {
                         throw new Exception("Invalid File Extension! " +
                                             "Please use .png, .jpg, .gif!");
@@ -98,13 +98,13 @@ namespace ItemFinderClassLibrary
             }
         }
 
-        public Vector2 Location
+        public string Location
         {
             get => _location;
             private set => _location = value;
         }
 
-        public void ChangeLocation(Vector2 loc)
+        public void ChangeLocation(string loc)
         {
             this.Location = loc;
         }
