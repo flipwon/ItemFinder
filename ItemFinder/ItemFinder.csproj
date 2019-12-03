@@ -73,6 +73,10 @@
     <Content Include="Admin\AdminEditForm.aspx" />
     <Content Include="Admin\AdminForm.aspx" />
     <Content Include="Admin\AdminSetupForm.aspx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="App_Data\Database.mdf" />
     <Content Include="App_Data\Database_log.ldf">
@@ -90,6 +94,11 @@
   <ItemGroup>
     <Compile Include="Logic\LoginHelper.cs" />
     <Compile Include="Logic\UserDao.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="User\AddForm.aspx.cs">
       <DependentUpon>AddForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

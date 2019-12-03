@@ -25,7 +25,7 @@ namespace ItemFinderClassLibrary
             get => _name;
             set => _name = value;
         }
-
+        
         public int Id
         {
             get => _id;

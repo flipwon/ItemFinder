@@ -41,13 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\DepartmentDao.cs" />
+    <Compile Include="DAL\ItemDao.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Notes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Store.cs" />
     <Compile Include="User.cs" />
-    <Compile Include="Vector2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

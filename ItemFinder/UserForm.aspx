@@ -17,12 +17,11 @@
         </div>
         
         <div>
-            <label>Test Search</label>
-
+            <asp:DropDownList ID="DrpSearch" runat="server"></asp:DropDownList>
         </div>
 
         <div>
-            <asp:Button ID="BtnSearch" runat="server" Text="Button" />
+            <asp:Button ID="BtnSearch" runat="server" Text="Button" OnClick="BtnSearch_OnClick"/>
         </div>
 
         <div>

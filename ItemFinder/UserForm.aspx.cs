@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ItemFinder.ItemFinderDataSetTableAdapters;
+using ItemFinderClassLibrary;
+using ItemFinderClassLibrary.DAL;
 
 namespace ItemFinder
 {
@@ -14,7 +16,10 @@ namespace ItemFinder
         ItemFinderDataSet.StoreDataTable _storeDataTable = new ItemFinderDataSet.StoreDataTable();
         ItemFinderDataSet.DepartmentDataTable _departmentDataTable = new ItemFinderDataSet.DepartmentDataTable();
         ItemFinderDataSet.ItemDataTable _itemDataTable = new ItemFinderDataSet.ItemDataTable();
-
+        ItemDao itemDao = new ItemDao(Properties.Settings.Default.conString);
+        DepartmentDao departmentDao = new DepartmentDao(Properties.Settings.Default.conString);
+        List<Item> items = new List<Item>();
+        List<Department> departments = new List<Department>();
 
         ItemTableAdapter _itemTableAdapter = new ItemTableAdapter();
         ItemFinderDataSet _dataSet = new ItemFinderDataSet();
@@ -25,7 +30,10 @@ namespace ItemFinder
         {
             _itemTableAdapter.Fill(_dataSet.Item);
             _itemDataTable = _itemTableAdapter.GetData();
-
+            departments = departmentDao.GetDepartments();
+            items = itemDao.GetItems();
+            LblName.Text = items[1].Name;
+            LblDept.Text = departments[0].Name;
             if (!IsPostBack)
             {
                 _itemDataTable = _itemTableAdapter.GetData();
@@ -35,13 +43,20 @@ namespace ItemFinder
 
         protected void TxtSearch_OnTextChanged(object sender, EventArgs e)
         {
-            var searchString = TxtSearch.Text;
-            var filtered = _itemDataTable.AsEnumerable()
-                .Where(r => r.Field<string>("ItemName").Contains(searchString));
+            //List<Item> filteredItems = items.FindAll(item => item.Name.Contains(TxtSearch.Text));
+            //LblName.Text = filteredItems[0].Name;
+            //DrpSearch.DataSource = filteredItems;
+            //DrpSearch.DataBind();
+            //DrpSearch.SelectedIndex = 0;
+        }
 
-            var filteredList = filtered.ToList();
-
-            LblName.Text = filteredList.Count > 0 ? filteredList[0].ItemName : "";
+        protected void BtnSearch_OnClick(object sender, EventArgs e)
+        {
+            List<Item> filteredItems = items.FindAll(item => item.Name.ToUpper().Contains(TxtSearch.Text.ToUpper()));
+            LblName.Text = filteredItems[0].Name;
+            DrpSearch.DataSource = filteredItems;
+            DrpSearch.DataBind();
+            DrpSearch.SelectedIndex = 0;
         }
 
 
