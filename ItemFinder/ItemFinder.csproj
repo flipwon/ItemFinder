@@ -67,6 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\mappin.png" />
+    <Content Include="Images\sqljoins.jpg" />
     <Content Include="User\AddForm.aspx" />
     <Content Include="Admin\AdminEditForm.aspx" />
     <Content Include="Admin\AdminForm.aspx" />
@@ -176,7 +178,9 @@
       <Name>ItemFinderClassLibrary</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Images\Items\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

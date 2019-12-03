@@ -13,5 +13,11 @@ namespace ItemFinder
         {
 
         }
+
+        protected void ImgMap_OnClick(object sender, ImageClickEventArgs e)
+        {
+            //set the location labels
+            lblTestCoord.Text = hidCoords.Value;
+        }
     }
 }

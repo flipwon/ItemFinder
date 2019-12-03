@@ -19,6 +19,8 @@ namespace ItemFinder
         ItemTableAdapter _itemTableAdapter = new ItemTableAdapter();
         ItemFinderDataSet _dataSet = new ItemFinderDataSet();
 
+        private string location;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             _itemTableAdapter.Fill(_dataSet.Item);
@@ -40,6 +42,12 @@ namespace ItemFinder
             var filteredList = filtered.ToList();
 
             LblName.Text = filteredList.Count > 0 ? filteredList[0].ItemName : "";
+        }
+
+
+        protected void BtnAddItem_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/User/AddForm.aspx");
         }
     }
 }

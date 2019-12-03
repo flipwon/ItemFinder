@@ -6,15 +6,11 @@
 <head runat="server">
     <title></title>
     
-    <!--Script to post back, dont think we need this atm
-    <script type="text/javascript">
-        function doPostBack(o){
-            __doPostBack(o.id,'');
-        }
-    </script>-->
 </head>
 <body>
+
     <form id="form1" runat="server">
+
         <div>
             <label>Search</label>
             <asp:TextBox ID="TxtSearch" runat="server" OnTextChanged="TxtSearch_OnTextChanged"></asp:TextBox>
@@ -30,7 +26,7 @@
         </div>
 
         <div>
-            <asp:Image ID="ImgMap" runat="server" />
+            <asp:ImageButton ID="ImgMap" runat="server" Width="250px" ImageUrl="~/Images/sqljoins.jpg" />
         </div>
         
         <div>
@@ -50,7 +46,7 @@
         </div>
 
         <div>
-            <asp:Button ID="BtnAddItem" runat="server" Text="Button" />
+            <asp:Button ID="BtnAddItem" runat="server" Text="Add Item" OnClick="BtnAddItem_OnClick"/>
         </div>
 
     </form>
