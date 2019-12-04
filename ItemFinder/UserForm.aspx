@@ -13,7 +13,7 @@
 
         <div>
             <label>Search</label>
-            <asp:TextBox ID="TxtSearch" runat="server" OnTextChanged="TxtSearch_OnTextChanged"></asp:TextBox>
+            <asp:TextBox ID="TxtSearch" runat="server" OnTextChanged="TxtSearch_OnTextChanged"  AutoPostBack="True"></asp:TextBox>
         </div>
         
         <div>
@@ -29,19 +29,19 @@
         </div>
         
         <div>
-            <asp:Label ID="LblName" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="LblName" runat="server" Text="Label" Visible="False"></asp:Label>
         </div>
         
         <div>
-            <asp:Label ID="LblDept" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="LblDept" runat="server" Text="Label" Visible="False"></asp:Label>
         </div>
         
         <div>
-            <asp:Label ID="LblDesc" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="LblDesc" runat="server" Text="Label" Visible="False"></asp:Label>
         </div>
         
         <div>
-            <asp:Label ID="LblPrice" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="LblPrice" runat="server" Text="Label" Visible="False"></asp:Label>
         </div>
 
         <div>

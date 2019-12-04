@@ -13,50 +13,54 @@ namespace ItemFinder
 {
     public partial class UserForm : System.Web.UI.Page
     {
-        ItemFinderDataSet.StoreDataTable _storeDataTable = new ItemFinderDataSet.StoreDataTable();
-        ItemFinderDataSet.DepartmentDataTable _departmentDataTable = new ItemFinderDataSet.DepartmentDataTable();
-        ItemFinderDataSet.ItemDataTable _itemDataTable = new ItemFinderDataSet.ItemDataTable();
         ItemDao itemDao = new ItemDao(Properties.Settings.Default.conString);
         DepartmentDao departmentDao = new DepartmentDao(Properties.Settings.Default.conString);
         List<Item> items = new List<Item>();
         List<Department> departments = new List<Department>();
 
-        ItemTableAdapter _itemTableAdapter = new ItemTableAdapter();
-        ItemFinderDataSet _dataSet = new ItemFinderDataSet();
-
         private string location;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            _itemTableAdapter.Fill(_dataSet.Item);
-            _itemDataTable = _itemTableAdapter.GetData();
             departments = departmentDao.GetDepartments();
             items = itemDao.GetItems();
-            LblName.Text = items[1].Name;
-            LblDept.Text = departments[0].Name;
             if (!IsPostBack)
             {
-                _itemDataTable = _itemTableAdapter.GetData();
-                //var items = _itemDataTable.Rows[0].Field<string>(2); //how to get a row
+                
             }
         }
 
         protected void TxtSearch_OnTextChanged(object sender, EventArgs e)
         {
-            //List<Item> filteredItems = items.FindAll(item => item.Name.Contains(TxtSearch.Text));
-            //LblName.Text = filteredItems[0].Name;
-            //DrpSearch.DataSource = filteredItems;
-            //DrpSearch.DataBind();
-            //DrpSearch.SelectedIndex = 0;
+            LblName.Visible = false;
+            LblDept.Visible = false;
+            LblDesc.Visible = false;
+            LblPrice.Visible = false;
+
+            List<Item> filteredItems = items.FindAll(item => item.Name.ToUpper().Contains(TxtSearch.Text.ToUpper()));
+            LblName.Text = filteredItems[0].Name;
+            DrpSearch.DataTextField = "Name";
+            DrpSearch.DataValueField = "Name";
+            DrpSearch.DataSource = filteredItems;
+            DrpSearch.DataBind();
+            DrpSearch.SelectedIndex = 0;
+            LblName.Text = DrpSearch.SelectedValue;
         }
 
         protected void BtnSearch_OnClick(object sender, EventArgs e)
         {
-            List<Item> filteredItems = items.FindAll(item => item.Name.ToUpper().Contains(TxtSearch.Text.ToUpper()));
-            LblName.Text = filteredItems[0].Name;
-            DrpSearch.DataSource = filteredItems;
-            DrpSearch.DataBind();
-            DrpSearch.SelectedIndex = 0;
+            LblName.Visible = true;
+            LblDept.Visible = true;
+            LblDesc.Visible = true;
+            LblPrice.Visible = true;
+            Item selectedItem = items.Find(item =>
+                item.Name.ToUpper().Contains(DrpSearch.SelectedValue.ToUpper()));
+            Department selectedDepartment =
+                departments.Find(d => d.Id == selectedItem.DepartmentId);
+            LblName.Text = $"Item Name: {selectedItem.Name}";
+            LblDept.Text = $"Department Name: {selectedDepartment.Name}";
+            LblDesc.Text = $"Item Description: {selectedItem.Description}";
+            LblPrice.Text = $"Item Price: ${selectedItem.Price}";
         }
 
 
