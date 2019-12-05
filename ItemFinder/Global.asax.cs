@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
@@ -36,7 +37,14 @@ namespace ItemFinder
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
-
+            if (Context.User != null && Context.User.Identity.IsAuthenticated)
+            {
+                FormsIdentity id = (FormsIdentity)Context.User.Identity;
+                FormsAuthenticationTicket ticket = id.Ticket;
+                string userData = ticket.UserData;
+                string[] roles = userData.Split(','); //assuming multiple roles played by the user are separated by a comma
+                Context.User = new GenericPrincipal(id, roles);
+            }
         }
 
         protected void Application_Error(object sender, EventArgs e)

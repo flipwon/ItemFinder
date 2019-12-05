@@ -16,7 +16,7 @@ namespace ItemFinderClassLibrary.Logic
         
         UsersTableAdapter _usersAdapter = new UsersTableAdapter();
 
-        public (int, int) AddRecord(string userName, string password)
+        public (int, int) AddRecord(string userName, string password, string role = "User")
         {
             byte[] bSalt = LoginHelper.GenerateSalt();
             string encPassword = LoginHelper.GeneratePasswordHash(password, bSalt, 20000);
@@ -36,6 +36,7 @@ namespace ItemFinderClassLibrary.Logic
 
             cmd.Parameters.AddWithValue("@uName", userName);
             cmd.Parameters.AddWithValue("@password", encPassword);
+            cmd.Parameters.AddWithValue("@role", role);
 
             SqlParameter pId = cmd.CreateParameter();
             pId.ParameterName = "@Id";
@@ -47,19 +48,44 @@ namespace ItemFinderClassLibrary.Logic
             cmd.ExecuteNonQuery();
 
             //return id and count.
-            return (Convert.ToInt32(cmd.Parameters[3].Value), Convert.ToInt32(cmd.Parameters[0].Value));
+            return (Convert.ToInt32(cmd.Parameters[4].Value), Convert.ToInt32(cmd.Parameters[0].Value));
         }
 
         public string GetEncPassword(string userName)
         {
             ItemFinderDataSet.UsersDataTable rows = _usersAdapter.GetData();
-            //UsersDataSet.AccountsDataTable rows = _adapter.GetDataBy(userName);
 
             //cast from datarow to accountsrow
             var filteredRows = (ItemFinderDataSet.UsersRow[])rows.Select($"UserName='{userName}'");
 
             if (filteredRows.Length == 1)
                 return filteredRows[0].Password;
+
+            return null;
+        }
+
+        public string GetUserRole(string userName)
+        {
+            /*
+            SqlCommand cmd = new SqlCommand("GetUserRole");
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = _usersAdapter.Connection;
+
+            cmd.Parameters.AddWithValue("@uName", userName);
+
+            cmd.Connection.Open();
+            cmd.ExecuteNonQuery();
+
+            var whatever = cmd.Parameters[1].Value;
+
+            return (string)cmd.Parameters["@role"].Value;*/
+            ItemFinderDataSet.UsersDataTable rows = _usersAdapter.GetData();
+
+            //cast from datarow to accountsrow
+            var filteredRows = (ItemFinderDataSet.UsersRow[])rows.Select($"UserName='{userName}'");
+
+            if (filteredRows.Length == 1)
+                return filteredRows[0].Role;
 
             return null;
         }

@@ -9,10 +9,7 @@ namespace ItemFinderClassLibrary
     class Notes
     {
         /*
-         * Ask about sharing databases
-         * Ask about live updates or download/push changes to database
-         * Use Range validator to validate Vector2 bounds compared to map bounds?
-         * 
+         * Ask about redirect based on user
          *
          *
          *

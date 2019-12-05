@@ -34,11 +34,6 @@ namespace ItemFinderClassLibrary.Logic
 
         public static bool IsUserAuthentic(string name, string password)
         {
-            //if(name.Equals("user1") && password.Equals("password1")) //validate against database
-            //    return true;
-            //if(name.Equals("admin1") && password.Equals("password1")) //validate against database
-            //    return true;
-            //return false;
 
             UserDao userDao = new UserDao();
             string encPassword = userDao.GetEncPassword(name);
@@ -58,11 +53,9 @@ namespace ItemFinderClassLibrary.Logic
 
         public static string GetUserRole(string name)
         {
-            if (name.Equals("user1")) //read from database
-                return "user";
-            if (name.Equals("admin1")) //read from database
-                return "admin";
-            return "";
+            UserDao dao = new UserDao();
+
+            return dao.GetUserRole(name);
         }
     }
 }

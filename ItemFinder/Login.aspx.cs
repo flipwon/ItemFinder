@@ -29,7 +29,11 @@ namespace ItemFinder
                     DateTime.Now.AddMinutes(10), false, roles);
                 string strTicket = FormsAuthentication.Encrypt(ticket);
                 Response.Cookies.Add(new System.Web.HttpCookie(FormsAuthentication.FormsCookieName, strTicket));
-                Response.Redirect(FormsAuthentication.GetRedirectUrl(userName, false));
+
+                if (roles.Equals("Admin"))
+                    Response.Redirect("Admin/AdminForm.aspx");
+                else
+                    Response.Redirect("User/UserForm.aspx");
             }
             else
             {

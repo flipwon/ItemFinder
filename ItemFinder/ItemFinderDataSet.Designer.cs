@@ -1556,7 +1556,7 @@ namespace ItemFinder {
                 this.columnUserName.AllowDBNull = false;
                 this.columnUserName.MaxLength = 50;
                 this.columnPassword.AllowDBNull = false;
-                this.columnPassword.MaxLength = 50;
+                this.columnPassword.MaxLength = 500;
                 this.columnRole.AllowDBNull = false;
                 this.columnRole.MaxLength = 10;
             }
