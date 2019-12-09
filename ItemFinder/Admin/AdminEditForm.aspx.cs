@@ -60,7 +60,7 @@ namespace ItemFinder
         {
             var dao = new ItemDao(Properties.Settings.Default.conString);
             var item = new Item(int.Parse(DrpDepartment.SelectedValue),
-                TxtName.Text, "100,100", TxtDescription.Text,
+                TxtName.Text, hidCoords.Value, TxtDescription.Text,
                 float.Parse(TxtPrice.Text));
 
             dao.UpdateItem(item, _itemId);
