@@ -58,15 +58,5 @@ namespace ItemFinderClassLibrary
             return true;
         }
 
-        public void UpvoteItem(Item item)
-        {
-            item.Rating++;
-        }
-
-        public void DownvoteItem(Item item)
-        {
-            item.Rating--;
-        }
-
     }
 }

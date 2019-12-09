@@ -17,6 +17,40 @@ namespace ItemFinderClassLibrary.DAL
             _conString = conString;
         }
 
+        public int AddItem(Item item)
+        {
+            var count = 0;
+            try
+            {
+                //Setting up the SQL query to insert into the table
+                var insertCommand = "Insert into [Item] (DepartmentId, ItemName, ItemLocation, ItemDesc, ItemPrice) " +
+                                    "Values (@DepartmentId, @ItemName, @ItemLocation, @ItemDesc, @ItemPrice)";
+                using (var con = new SqlConnection(_conString))
+                using (var command = new SqlCommand(insertCommand, con))
+                {
+                    //Opening the connection and adding parameters to the SQL command to be executed later on
+                    con.Open();
+                    command.Parameters.Add("@DepartmentId", SqlDbType.Int).Value = item.DepartmentId;
+                    command.Parameters.Add("@ItemName", SqlDbType.VarChar).Value = item.Name;
+                    command.Parameters.Add("@ItemLocation", SqlDbType.VarChar).Value = item.Location;
+                    command.Parameters.Add("@ItemDesc", SqlDbType.VarChar).Value = item.Description;
+                    command.Parameters.Add("@ItemPrice", SqlDbType.Decimal).Value = item.Price;
+
+                    //Executing the command above with all the parameters given
+                    count = command.ExecuteNonQuery();
+                }
+
+            }
+
+            //Catching exception
+            catch (SqlException ex)
+            {
+                //Throwing the exception that was caught
+                throw ex;
+            }
+            return count;
+        }
+
         public List<Item> GetItems()
         {
             List<Item> items = new List<Item>();
@@ -37,14 +71,13 @@ namespace ItemFinderClassLibrary.DAL
             //loop till all records have not been read to populate the list
             while (reader.Read())
             {
-                var name = reader.GetString(2);
                 var departmentId = reader.GetInt32(1);
-                var description = reader.GetString(4);
+                var name = reader.GetString(2);
+                var description = reader.GetString(3);
+                var location = reader.GetString(4);
                 var price = reader.GetDecimal(5);
-                var imagePath = reader.GetString(6);
-                var location = reader.GetString(3);
 
-                items.Add(new Item(name, departmentId, description, (float) price, imagePath, location));
+                items.Add(new Item(departmentId, name,  description, location, (float)price));
             }
 
             //close all
@@ -73,14 +106,13 @@ namespace ItemFinderClassLibrary.DAL
             //loop till all records have not been read to populate the list
             while (reader.Read())
             {
-                var name = reader.GetString(2);
                 var departmentId = reader.GetInt32(1);
-                var description = reader.GetString(4);
+                var name = reader.GetString(2);
+                var description = reader.GetString(3);
+                var location = reader.GetString(4);
                 var price = reader.GetDecimal(5);
-                var imagePath = reader.GetString(6);
-                var location = reader.GetString(3);
 
-                var item = new Item(name, departmentId, description, (float)price, imagePath, location);
+                var item = new Item(departmentId, name, description, location, (float) price);
 
                 //close all
                 reader.Close();
