@@ -38,25 +38,5 @@ namespace ItemFinderClassLibrary
             set => _description = value;
         }
 
-        public Item SearchItem(string name)
-        {
-            return null;
-        }
-
-        public void AddItem(Item item)
-        {
-            //add to item list as well as db??
-        }
-
-        public Item EditItem(Item item)
-        {
-            return null;
-        }
-
-        public bool DeleteItem(Item item)
-        {
-            return true;
-        }
-
     }
 }

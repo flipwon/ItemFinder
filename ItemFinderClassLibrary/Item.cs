@@ -63,11 +63,5 @@ namespace ItemFinderClassLibrary
             get => _location;
             private set => _location = value;
         }
-
-        public void ChangeLocation(string loc)
-        {
-            this.Location = loc;
-        }
-
     }
 }
