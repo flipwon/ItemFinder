@@ -25,8 +25,8 @@ namespace ItemFinder.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\flipp\\source\\repos\\I" +
-            "temFinder\\ItemFinder\\App_Data\\Database.mdf;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\ivanpavlov\\source\\re" +
+            "pos\\ItemFinder\\ItemFinder\\App_Data\\Database.mdf;Integrated Security=True")]
         public string conString {
             get {
                 return ((string)(this["conString"]));
