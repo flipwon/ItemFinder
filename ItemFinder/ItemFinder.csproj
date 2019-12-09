@@ -71,7 +71,7 @@
     <Content Include="Images\mappin.png" />
     <Content Include="Images\supermarket.jpg" />
     <Content Include="Register.aspx" />
-    <Content Include="User\AddForm.aspx" />
+    <Content Include="AddForm.aspx" />
     <Content Include="Admin\AdminEditForm.aspx" />
     <Content Include="Admin\AdminForm.aspx" />
     <Content Include="Admin\Web.config" />
@@ -101,8 +101,10 @@
     <Compile Include="Admin\AdminRegister.aspx.designer.cs">
       <DependentUpon>AdminRegister.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Logic\LoginHelper.cs" />
-    <Compile Include="Logic\UserDao.cs" />
+    <Compile Include="DAL\DepartmentDao.cs" />
+    <Compile Include="DAL\ItemDao.cs" />
+    <Compile Include="DAL\LoginHelper.cs" />
+    <Compile Include="DAL\UserDao.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -115,11 +117,11 @@
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="User\AddForm.aspx.cs">
+    <Compile Include="AddForm.aspx.cs">
       <DependentUpon>AddForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="User\AddForm.aspx.designer.cs">
+    <Compile Include="AddForm.aspx.designer.cs">
       <DependentUpon>AddForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\AdminEditForm.aspx.cs">

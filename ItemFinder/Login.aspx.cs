@@ -28,7 +28,7 @@ namespace ItemFinder
                 FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, userName, DateTime.Now,
                     DateTime.Now.AddMinutes(10), false, roles);
                 string strTicket = FormsAuthentication.Encrypt(ticket);
-                Response.Cookies.Add(new System.Web.HttpCookie(FormsAuthentication.FormsCookieName, strTicket));
+                Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, strTicket));
                 Session["role"] = roles;
 
                 if (roles.Equals("Admin"))
