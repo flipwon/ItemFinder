@@ -69,7 +69,7 @@
   <ItemGroup>
     <Content Include="Admin\AdminRegister.aspx" />
     <Content Include="Images\mappin.png" />
-    <Content Include="Images\sqljoins.jpg" />
+    <Content Include="Images\supermarket.jpg" />
     <Content Include="Register.aspx" />
     <Content Include="User\AddForm.aspx" />
     <Content Include="Admin\AdminEditForm.aspx" />
