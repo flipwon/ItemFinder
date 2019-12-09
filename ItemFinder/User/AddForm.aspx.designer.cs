@@ -24,6 +24,15 @@ namespace ItemFinder
         protected global::System.Web.UI.WebControls.HiddenField hidCoords;
 
         /// <summary>
+        /// hidFinalCoords control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidFinalCoords;
+
+        /// <summary>
         /// ImgMap control.
         /// </summary>
         /// <remarks>
@@ -42,15 +51,6 @@ namespace ItemFinder
         protected global::System.Web.UI.WebControls.Image imgPin;
 
         /// <summary>
-        /// lblTestCoord control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTestCoord;
-
-        /// <summary>
         /// txtName control.
         /// </summary>
         /// <remarks>
@@ -58,6 +58,15 @@ namespace ItemFinder
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtName;
+
+        /// <summary>
+        /// ValName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ValName;
 
         /// <summary>
         /// drpDepartment control.
@@ -85,15 +94,6 @@ namespace ItemFinder
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPrice;
-
-        /// <summary>
-        /// filImage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload filImage;
 
         /// <summary>
         /// btnAddItem control.

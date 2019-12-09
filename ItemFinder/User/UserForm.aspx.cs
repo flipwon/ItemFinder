@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -61,12 +62,32 @@ namespace ItemFinder
             LblDept.Text = $"Department Name: {selectedDepartment.Name}";
             LblDesc.Text = $"Item Description: {selectedItem.Description}";
             LblPrice.Text = $"Item Price: ${selectedItem.Price}";
+            SetPin(selectedItem.Location);
         }
 
 
         protected void BtnAddItem_OnClick(object sender, EventArgs e)
         {
             Response.Redirect("~/User/AddForm.aspx");
+        }
+
+        void SetPin(string coordString)
+        {
+
+            //get the image coords
+            var coords = coordString.Split(',');
+            hidFinalCoords.Value = hidCoords.Value;
+            Debug.WriteLine(coords[0] + "," + coords[1]);
+            //offset for the image
+            float x = float.Parse(coords[0]) - 13;
+            float y = float.Parse(coords[1]) - 21;
+
+            //set the pin based on offset coords
+            imgPin.Style.Add("Left", x + "px");
+            imgPin.Style.Add("Top", y + "px");
+
+            //show the pin
+            imgPin.Visible = true;
         }
     }
 }
