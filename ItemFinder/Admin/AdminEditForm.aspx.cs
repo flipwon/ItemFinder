@@ -17,12 +17,11 @@ namespace ItemFinder
         {
             _departments = _departmentDao.GetDepartments();
             DrpDepartment.DataTextField = "Name";
-            DrpDepartment.DataValueField = "Name";
+            DrpDepartment.DataValueField = "Id";
             DrpDepartment.DataSource = _departments;
             DrpDepartment.DataBind();
             DrpDepartment.SelectedIndex = 0;
-            var item = Session["Item"] as Item;
-            if (item != null)
+            if (Session["Item"] is Item item)
             {
                 TxtDescription.Text = item.Description;
                 TxtName.Text = item.Name;
