@@ -21,6 +21,9 @@ namespace ItemFinder
 
             (int, int) result = dao.AddRecord(TxtUser.Text, TxtPassword.Text);
             LblStatus.Text = "User ID: " + result.Item1 + "Count: " + result.Item2;
+
+            if (result.Item2 > 0)
+                Response.Redirect("/Login.aspx");
         }
 
         protected void BtnLogin_OnClick(object sender, EventArgs e)
