@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemFinder", "ItemFinder\It
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemFinderClassLibrary", "ItemFinderClassLibrary\ItemFinderClassLibrary.csproj", "{540A9D9B-2BE2-48E0-B523-431AEBE3A59A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemFinderService", "ItemFinderService\ItemFinderService.csproj", "{02BE56C0-AB8C-4025-A0E3-F4CBC4FE0648}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{540A9D9B-2BE2-48E0-B523-431AEBE3A59A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{540A9D9B-2BE2-48E0-B523-431AEBE3A59A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{540A9D9B-2BE2-48E0-B523-431AEBE3A59A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02BE56C0-AB8C-4025-A0E3-F4CBC4FE0648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02BE56C0-AB8C-4025-A0E3-F4CBC4FE0648}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02BE56C0-AB8C-4025-A0E3-F4CBC4FE0648}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02BE56C0-AB8C-4025-A0E3-F4CBC4FE0648}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
