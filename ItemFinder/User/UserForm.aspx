@@ -39,9 +39,6 @@
     <div>
         <label>Search</label>
         <asp:TextBox ID="TxtSearch" runat="server" OnTextChanged="TxtSearch_OnTextChanged" AutoPostBack="True"></asp:TextBox>
-    </div>
-
-    <div>
         <asp:DropDownList ID="DrpSearch" runat="server"></asp:DropDownList>
     </div>
 
@@ -49,25 +46,24 @@
         <asp:Button ID="BtnSearch" runat="server" Text="Search" OnClick="BtnSearch_OnClick"/>
     </div>
 
-    
-
     <div>
+        <label>Item Name:</label>
         <asp:Label ID="LblName" runat="server" Text="Label" Visible="False"></asp:Label>
     </div>
 
     <div>
+        <label>Item Department:</label>
         <asp:Label ID="LblDept" runat="server" Text="Label" Visible="False"></asp:Label>
     </div>
 
     <div>
+        <label>Item Description:</label>
         <asp:Label ID="LblDesc" runat="server" Text="Label" Visible="False"></asp:Label>
     </div>
 
     <div>
+        <label>Item Price:</label>
         <asp:Label ID="LblPrice" runat="server" Text="Label" Visible="False"></asp:Label>
     </div>
 
-    <div>
-        <asp:Button ID="BtnAddItem" runat="server" Text="Add Item" OnClick="BtnAddItem_OnClick"/>
-    </div>
 </asp:Content>

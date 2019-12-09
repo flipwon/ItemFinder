@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+    <h1>Register a User (Admin)</h1>
     <div>
         <label>Username:</label>
         <asp:TextBox runat="server" Id="TxtUser"></asp:TextBox>
@@ -26,17 +26,9 @@
             <asp:ListItem>User</asp:ListItem>
         </asp:DropDownList>
     </div>
-    
-    
 
     <div>
         <asp:Button runat="server" Id="BtnRegister" Text="Register" OnClick="BtnRegister_OnClick"></asp:Button>
     </div>
-    
-    <div>
-        <asp:Button runat="server" Id="BtnLogin" Text="Login" OnClick="BtnLogin_OnClick"></asp:Button>
-    </div>
-    
-    <asp:Label runat="server" Id="LblStatus" Text=""></asp:Label>
 
 </asp:Content>
