@@ -41,8 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\DepartmentDao.cs" />
-    <Compile Include="DAL\ItemDao.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Notes.cs" />

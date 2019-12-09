@@ -20,7 +20,7 @@ namespace ItemFinder
             var depDao = new DepartmentDao(Properties.Settings.Default.conString);
             var dept = depDao.GetDepartments();
             drpDepartment.DataTextField = "Name";
-            drpDepartment.DataValueField = "Name";
+            drpDepartment.DataValueField = "Id";
             drpDepartment.DataSource = dept;
             drpDepartment.DataBind();
             drpDepartment.SelectedIndex = 0;
@@ -48,11 +48,10 @@ namespace ItemFinder
         protected void btnAddItem_OnClick(object sender, EventArgs e)
         {
             ItemDao dao = new ItemDao(Properties.Settings.Default.conString);
-            Item item = new Item(drpDepartment.SelectedIndex, txtName.Text, "111,111", txtDescription.Text,
+            Item item = new Item(int.Parse(drpDepartment.SelectedValue), txtName.Text, "111,111", txtDescription.Text,
                 float.Parse(txtPrice.Text));
 
-            Debug.WriteLine(drpDepartment.SelectedIndex);
-            //dao.AddItem(item);
+            dao.AddItem(item);
         }
     }
 }

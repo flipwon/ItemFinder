@@ -4,12 +4,15 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ItemFinder;
+using ItemFinder.ItemFinderDataSetTableAdapters;
 
 namespace ItemFinderClassLibrary.DAL
 {
     public class DepartmentDao
     {
         private string _conString;
+        DepartmentTableAdapter _tableAdapter = new DepartmentTableAdapter();
 
         public DepartmentDao(string conString)
         {
@@ -48,6 +51,25 @@ namespace ItemFinderClassLibrary.DAL
             con.Close();
 
             return departments;
+        }
+
+        /// <summary>
+        /// Get a department ID by name
+        /// </summary>
+        /// <param name="name">name</param>
+        /// <returns>Id of dept</returns>
+        public int GetDepartmentId(string name)
+        {
+
+             ItemFinderDataSet.DepartmentDataTable rows = _tableAdapter.GetData();
+
+            //cast from datarow to accountsrow
+            var filteredRows = (ItemFinderDataSet.UsersRow[])rows.Select($"Name='{name}'");
+
+            if (filteredRows.Length == 1)
+                return filteredRows[0].Id;
+
+            return -1;
         }
     }
 }
