@@ -15,6 +15,33 @@ namespace ItemFinder
     {
 
         /// <summary>
+        /// TxtFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtFilter;
+
+        /// <summary>
+        /// BtnFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnFilter;
+
+        /// <summary>
+        /// BtnResetFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnResetFilter;
+
+        /// <summary>
         /// GrdAdmin control.
         /// </summary>
         /// <remarks>

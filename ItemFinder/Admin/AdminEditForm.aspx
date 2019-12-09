@@ -1,11 +1,49 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ItemFinder.Master" AutoEventWireup="true" CodeBehind="AdminEditForm.aspx.cs" Inherits="ItemFinder.AdminEditForm" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+        document.onmousemove = getCoordinate;
+        var mosX = 0;
+        var mosY = 0;
+        var pin = document.getElementById('imgPin');
+
+        //Keep the location of the mouse and apply it to a hidden field.
+        function getCoordinate(e) {
+            mosX = event.clientX + document.body.scrollLeft;
+            mosY = event.clientY + document.body.scrollTop;
+            document.getElementById('<%=hidCoords.ClientID%>').value = "" + mosX + "," + mosY;
+            return true;
+        }
+    </script>
+
+    <style>
+        .parent {
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+        .image1 {
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+        .image2 {
+            position: absolute;
+            top: 30px;
+            left: 70px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Image runat="server" ID="imgPin" Width="10px" ImageUrl="~/Images/mappin.png"/>
+    <asp:HiddenField ID="hidCoords" runat="server" />
 
-    <div>
-        <asp:ImageButton ID="ImgMap" runat="server" Width="250px" ImageUrl="~/Images/sqljoins.jpg" OnClick="ImgMap_OnClick"/>
+    <div class="parent">
+        <asp:ImageButton ID="ImgMap" CssClass="image1" runat="server" 
+                         Width="600px" ImageUrl="~/Images/supermarket.jpg" 
+                         OnClick="ImgMap_OnClick" />
+
+        <asp:Image ID="ImgPin" CssClass="image2" runat="server"   
+                   Width="10px" ImageUrl="~/Images/mappin.png"
+                   Visible="False"/>
     </div>
 
     <div>
@@ -28,9 +66,8 @@
     </div>
     
     <div>
-        <label>Image (Optional)</label>
-        <asp:FileUpload ID="FilImage" runat="server" />
+        <asp:Label runat="server" ID="LblStatus"></asp:Label>
     </div>
     
-    <asp:Button ID="BtnUpdateItem" runat="server" Text="Update Item" />
+    <asp:Button ID="BtnUpdateItem" runat="server" Text="Update Item" OnClick="BtnUpdateItem_OnClick"/>
 </asp:Content>
