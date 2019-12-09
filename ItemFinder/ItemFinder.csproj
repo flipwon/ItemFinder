@@ -74,7 +74,6 @@
     <Content Include="User\AddForm.aspx" />
     <Content Include="Admin\AdminEditForm.aspx" />
     <Content Include="Admin\AdminForm.aspx" />
-    <Content Include="Admin\AdminSetupForm.aspx" />
     <Content Include="Admin\Web.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -137,13 +136,6 @@
     <Compile Include="Admin\AdminForm.aspx.designer.cs">
       <DependentUpon>AdminForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\AdminSetupForm.aspx.cs">
-      <DependentUpon>AdminSetupForm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\AdminSetupForm.aspx.designer.cs">
-      <DependentUpon>AdminSetupForm.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -191,6 +183,7 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="User\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

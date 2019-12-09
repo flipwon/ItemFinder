@@ -17,7 +17,7 @@ namespace ItemFinderClassLibrary
         private int _rating;
         private string _imagePath;
         private string _location;
-        
+
         public Item(string name, int departmentId, string description, float price, 
             string imagePath, string location)
         {
