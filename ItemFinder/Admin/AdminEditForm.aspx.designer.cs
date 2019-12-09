@@ -15,13 +15,13 @@ namespace ItemFinder
     {
 
         /// <summary>
-        /// imgPin control.
+        /// hidCoords control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgPin;
+        protected global::System.Web.UI.WebControls.HiddenField hidCoords;
 
         /// <summary>
         /// ImgMap control.
@@ -31,6 +31,15 @@ namespace ItemFinder
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton ImgMap;
+
+        /// <summary>
+        /// ImgPin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImgPin;
 
         /// <summary>
         /// TxtName control.
@@ -69,13 +78,13 @@ namespace ItemFinder
         protected global::System.Web.UI.WebControls.TextBox TxtPrice;
 
         /// <summary>
-        /// FilImage control.
+        /// LblStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FilImage;
+        protected global::System.Web.UI.WebControls.Label LblStatus;
 
         /// <summary>
         /// BtnUpdateItem control.

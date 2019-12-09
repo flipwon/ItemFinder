@@ -36,10 +36,11 @@ namespace ItemFinder
 
         protected void BtnUpdate_OnClick(object sender, EventArgs e)
         {
-            GridViewRow currentRow = (GridViewRow)(((Button)sender)).NamingContainer;
+            var currentRow = (GridViewRow)(((Button)sender)).NamingContainer;
             var id = int.Parse(((HiddenField)GrdAdmin.Rows[currentRow.RowIndex].FindControl("ItemId")).Value);
-            Item item = _itemDao.GetItem(id);
+            var item = _itemDao.GetItem(id);
             Session["Item"] = item;
+            Session["ItemId"] = id;
             Response.Redirect("AdminEditForm.aspx");
         }
 
@@ -49,6 +50,21 @@ namespace ItemFinder
             _itemDataTable = _itemDao.PullAllData();
             GrdAdmin.DataSource = _itemDataTable;
             GrdAdmin.DataBind();
+        }
+
+        protected void BtnFilter_OnClick(object sender, EventArgs e)
+        {
+            //Filtering GridView based on UserName from the text given inside the TextBox
+            LoadData();
+            _itemDataTable.DefaultView.RowFilter = $"[ItemName] like '%{TxtFilter.Text}%'";
+            GrdAdmin.DataSource = _itemDataTable;
+            GrdAdmin.DataBind();
+        }
+
+        protected void BtnResetFilter_OnClick(object sender, EventArgs e)
+        {
+            LoadData();
+            TxtFilter.Text = "";
         }
     }
 }
