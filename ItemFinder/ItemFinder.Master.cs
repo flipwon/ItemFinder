@@ -17,20 +17,17 @@ namespace ItemFinder
             if (Session["role"] == null)
             {
                 HypAdminDash.Visible = false;
-                HypAdminEdit.Visible = false;
                 HypAdminReg.Visible = false;
 
             }
             else if (Session["role"].ToString().Equals("Admin"))
             {
                 HypAdminDash.Visible = true;
-                HypAdminEdit.Visible = true;
                 HypAdminReg.Visible = true;
             }
             else
             {
                 HypAdminDash.Visible = false;
-                HypAdminEdit.Visible = false;
                 HypAdminReg.Visible = false;
             }
         }

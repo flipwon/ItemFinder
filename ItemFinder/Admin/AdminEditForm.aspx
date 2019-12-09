@@ -35,7 +35,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:HiddenField ID="hidCoords" runat="server" />
-
+    <asp:HiddenField ID="hidFinalCoords" runat="server" />
+    <h1>Edit Item Properties</h1>
     <div class="parent">
         <asp:ImageButton ID="ImgMap" CssClass="image1" runat="server" 
                          Width="600px" ImageUrl="~/Images/supermarket.jpg" 

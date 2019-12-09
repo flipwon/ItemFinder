@@ -17,7 +17,6 @@
         <asp:HyperLink runat="server" NavigateUrl="User/UserForm.aspx" Text="User Dashboard"></asp:HyperLink>
         <asp:HyperLink runat="server" NavigateUrl="User/AddForm.aspx" Text="Add Item"></asp:HyperLink>
         <asp:HyperLink runat="server" NavigateUrl="Admin/AdminForm.aspx" Text="Admin Dashboard" ID="HypAdminDash"></asp:HyperLink>
-        <asp:HyperLink runat="server" NavigateUrl="Admin/AdminEditForm.aspx" Text="Edit Admin" ID="HypAdminEdit"></asp:HyperLink>
         <asp:HyperLink runat="server" NavigateUrl="Admin/AdminRegister.aspx" Text="Register Admin" ID="HypAdminReg"></asp:HyperLink>
         <asp:LinkButton ID="LnkLogout" runat="server" Text="Logout" OnClick="LnkLogout_OnClick"></asp:LinkButton>
 

@@ -2,11 +2,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <h1>Admin Dashboard</h1>
     <div>
         <label>Filter by Name: </label>
-        <asp:TextBox ID="TxtFilter" runat="server"></asp:TextBox><br/>
+        <asp:TextBox ID="TxtFilter" runat="server"></asp:TextBox>
         <asp:Button ID="BtnFilter" runat="server" Text="Filter" OnClick="BtnFilter_OnClick" />
         <asp:Button runat="server" ID="BtnResetFilter" Text="Reset Filter" OnClick="BtnResetFilter_OnClick"/>
+        <br/>
     </div>
 
     <!--Setting up the GridView with sorting and manually entering columns-->

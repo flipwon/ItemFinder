@@ -33,7 +33,7 @@ namespace ItemFinder
 
             //offset for the image
             int x = int.Parse(coords[0]) - 13;
-            int y = int.Parse(coords[1]) - 21;
+            int y = int.Parse(coords[1]) - 117;
 
             //set the pin based on offset coords
             imgPin.Style.Add("Left", x + "px");
