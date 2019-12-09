@@ -3,7 +3,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Image runat="server" ID="imgPin" Width="10px" ImageUrl="~/Images/mappin.png"/>
-
     <div>
         <asp:ImageButton ID="ImgMap" runat="server" Width="250px" ImageUrl="~/Images/sqljoins.jpg" OnClick="ImgMap_OnClick"/>
     </div>

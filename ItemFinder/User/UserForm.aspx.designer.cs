@@ -15,6 +15,42 @@ namespace ItemFinder
     {
 
         /// <summary>
+        /// hidCoords control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidCoords;
+
+        /// <summary>
+        /// hidFinalCoords control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidFinalCoords;
+
+        /// <summary>
+        /// ImageButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
+
+        /// <summary>
+        /// imgPin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgPin;
+
+        /// <summary>
         /// TxtSearch control.
         /// </summary>
         /// <remarks>
@@ -40,15 +76,6 @@ namespace ItemFinder
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnSearch;
-
-        /// <summary>
-        /// ImgMap control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImgMap;
 
         /// <summary>
         /// LblName control.

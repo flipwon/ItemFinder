@@ -13,7 +13,6 @@ namespace ItemFinder
 {
     public partial class AddForm : System.Web.UI.Page
     {
-        private string finalLocation;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,8 +29,7 @@ namespace ItemFinder
         {
             //get the image coords
             var coords = hidCoords.Value.Split(',');
-            lblTestCoord.Text = coords[0] +","+coords[1];
-            finalLocation = hidCoords.Value;
+            hidFinalCoords.Value = hidCoords.Value;
 
             //offset for the image
             int x = int.Parse(coords[0]) - 13;
@@ -48,7 +46,7 @@ namespace ItemFinder
         protected void btnAddItem_OnClick(object sender, EventArgs e)
         {
             ItemDao dao = new ItemDao(Properties.Settings.Default.conString);
-            Item item = new Item(int.Parse(drpDepartment.SelectedValue), txtName.Text, "111,111", txtDescription.Text,
+            Item item = new Item(int.Parse(drpDepartment.SelectedValue), txtName.Text, hidFinalCoords.Value, txtDescription.Text,
                 float.Parse(txtPrice.Text));
 
             dao.AddItem(item);

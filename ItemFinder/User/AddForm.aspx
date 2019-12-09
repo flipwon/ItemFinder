@@ -39,8 +39,9 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <h1>Add An Item</h1>
     <asp:HiddenField ID="hidCoords" runat="server" />
+    <asp:HiddenField ID="hidFinalCoords" runat="server" />
 
     <div class="parent">
         <asp:ImageButton ID="ImgMap" CssClass="image1" runat="server" 
@@ -51,12 +52,14 @@
                    Width="10px" ImageUrl="~/Images/mappin.png"
                    Visible="False"/>
     </div>
-    
-    <div><label>Test Location:</label><asp:Label ID="lblTestCoord" runat="server" Text="Label"></asp:Label></div>
+
 
     <div>
         <label>Name</label>
         <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="ValName" runat="server"
+                                    ControlToValidate="txtName" Display="Dynamic"
+                                    ErrorMessage="Name required"></asp:RequiredFieldValidator>
     </div>
     
     <div>
@@ -72,11 +75,7 @@
         <label>Price (Optional)</label>
         <asp:TextBox ID="txtPrice" runat="server"></asp:TextBox>
     </div>
-    
-    <div>
-        <label>Image (Optional)</label>
-        <asp:FileUpload ID="filImage" runat="server" />
-    </div>
+
     
     <asp:Button ID="btnAddItem" runat="server" Text="Add Item" OnClick="btnAddItem_OnClick" />
 

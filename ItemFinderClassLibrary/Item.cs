@@ -16,7 +16,8 @@ namespace ItemFinderClassLibrary
         private float _price;
         private string _location;
 
-        public Item(int departmentId, string name, string location,  string description, float price)
+        public Item(int departmentId, string name, string location, 
+            string description = "No description available.", float price = -1)
         {
             Name = name;
             DepartmentId = departmentId;
