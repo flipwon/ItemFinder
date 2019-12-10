@@ -41,13 +41,19 @@ namespace ItemFinder
 
             //show the pin
             imgPin.Visible = true;
+
+            btnAddItem.Enabled = true;
         }
 
         protected void btnAddItem_OnClick(object sender, EventArgs e)
         {
             ItemDao dao = new ItemDao(Properties.Settings.Default.conString);
-            Item item = new Item(int.Parse(drpDepartment.SelectedValue), txtName.Text, hidFinalCoords.Value, txtDescription.Text,
-                float.Parse(txtPrice.Text));
+
+            if (!float.TryParse(txtPrice.Text, out float price))
+                price = -1;
+
+            Item item = new Item(int.Parse(drpDepartment.SelectedValue), TxtName.Text, 
+                hidFinalCoords.Value, txtDescription.Text, price);
 
             dao.AddItem(item);
         }

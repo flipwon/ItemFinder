@@ -38,14 +38,17 @@ namespace ItemFinderClassLibrary.Logic
             UserDao userDao = new UserDao();
             string encPassword = userDao.GetEncPassword(name);
 
-            string[] parts = encPassword.Split('|');
-            int iterations = int.Parse(parts[0]);
-            byte[] bSalt = Convert.FromBase64String(parts[1]);
+            if (encPassword != null)
+            {
+                string[] parts = encPassword.Split('|');
+                int iterations = int.Parse(parts[0]);
+                byte[] bSalt = Convert.FromBase64String(parts[1]);
 
-            string hashPass = GeneratePasswordHash(password, bSalt, iterations);
+                string hashPass = GeneratePasswordHash(password, bSalt, iterations);
 
-            if (hashPass == encPassword)
-                return true;
+                if (hashPass == encPassword)
+                    return true;
+            }
 
             return false;
 

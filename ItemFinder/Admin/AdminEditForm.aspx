@@ -50,6 +50,10 @@
     <div>
         <label>Name</label>
         <asp:TextBox ID="TxtName" runat="server"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator" runat="server"
+                                    ControlToValidate="TxtName" Display="Dynamic"
+                                    ErrorMessage="Item must have a name."></asp:RequiredFieldValidator>
+
     </div>
     
     <div>

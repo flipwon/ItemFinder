@@ -28,6 +28,7 @@ namespace ItemFinder
             DrpDepartment.DataSource = _departments;
             DrpDepartment.DataBind();
             DrpDepartment.SelectedIndex = 0;
+
             if (!IsPostBack)
             {
                 if (Session["Item"] is Item item)
@@ -36,6 +37,7 @@ namespace ItemFinder
                     TxtName.Text = item.Name;
                     TxtPrice.Text = item.Price.ToString();
                     SetPin(item.Location);
+                    hidFinalCoords.Value = item.Location;
                 }
             }
         }
@@ -48,9 +50,13 @@ namespace ItemFinder
         protected void BtnUpdateItem_OnClick(object sender, EventArgs e)
         {
             var dao = new ItemDao(Properties.Settings.Default.conString);
+
+            if (!float.TryParse(TxtPrice.Text, out float price))
+                price = -1;
+
             var item = new Item(int.Parse(DrpDepartment.SelectedValue),
                 TxtName.Text, hidFinalCoords.Value, TxtDescription.Text,
-                float.Parse(TxtPrice.Text));
+                price);
 
             dao.UpdateItem(item, _itemId);
             Response.Redirect("/Admin/AdminForm.aspx");

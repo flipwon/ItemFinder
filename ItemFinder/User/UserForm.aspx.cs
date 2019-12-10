@@ -19,16 +19,11 @@ namespace ItemFinder
         List<Item> items = new List<Item>();
         List<Department> departments = new List<Department>();
 
-        private string location;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             departments = departmentDao.GetDepartments();
             items = itemDao.GetItems();
-            if (!IsPostBack)
-            {
-                
-            }
         }
 
         protected void TxtSearch_OnTextChanged(object sender, EventArgs e)
@@ -60,8 +55,17 @@ namespace ItemFinder
                 departments.Find(d => d.Id == selectedItem.DepartmentId);
             LblName.Text = selectedItem.Name;
             LblDept.Text = selectedDepartment.Name;
-            LblDesc.Text = selectedItem.Description;
-            LblPrice.Text = selectedItem.Price.ToString();
+
+            if (!string.IsNullOrEmpty(selectedItem.Description))
+                LblDesc.Text = selectedItem.Description;
+            else
+                LblDesc.Text = "-";
+            
+            if (selectedItem.Price != -1)
+                LblPrice.Text = selectedItem.Price.ToString();
+            else
+                LblPrice.Text = "-";
+
             SetPin(selectedItem.Location);
         }
 
