@@ -57,9 +57,10 @@ namespace ItemFinder.DAL
                 //Getting data than adding the new object to the list
                 var departmentId = reader.GetInt32(0);
                 var name = reader.GetString(2);
+                var departmentId = reader.GetInt32(0);
                 var description = reader.GetString(3);
 
-                departments.Add(new Department(name, departmentId, description));
+                departments.Add(new Department(name, storeId, description));
             }
 
             //Close all connections/readers
@@ -78,15 +79,18 @@ namespace ItemFinder.DAL
         /// <returns>Id of department</returns>
         public int GetDepartmentId(string name)
         {
+            ItemFinderDataSet.DepartmentDataTable rows = _tableAdapter.GetData();
             //Getting all rows in department table
             ItemFinderDataSet.DepartmentDataTable rows = _tableAdapter.GetData();
 
+            //cast from datarow to accountsrow
+            var filteredRows = (ItemFinderDataSet.DepartmentRow[])rows.Select($"DepartmentName='{name}'");
             //Cast from DataRow to DepartmentRow
             var filteredRows = (ItemFinderDataSet.UsersRow[])rows.Select($"Name='{name}'");
 
             //Returning the Id if the returned length of rows is only 1
             if (filteredRows.Length == 1)
-                return filteredRows[0].Id;
+                return filteredRows[0].DepartmentId;
 
             return -1;
         }

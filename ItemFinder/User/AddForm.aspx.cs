@@ -16,6 +16,20 @@ namespace ItemFinder.User
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                var depDao = new DepartmentDao(Properties.Settings.Default.conString);
+                var dept = depDao.GetDepartments();
+                dept = depDao.GetDepartments();
+                foreach (Department d in dept)
+                {
+                    ListItem l = new ListItem(d.Name, depDao.GetDepartmentId(d.Name).ToString());
+                    drpDepartment.Items.Add(l);
+                }
+
+                drpDepartment.SelectedIndex = 0;
+            }
+        }
             //Setting up Dao as well as the list of all departments
             var depDao = new DepartmentDao(Properties.Settings.Default.conString);
             var dept = depDao.GetDepartments();
@@ -52,13 +66,18 @@ namespace ItemFinder.User
         protected void btnAddItem_OnClick(object sender, EventArgs e)
         {
             //Creating a new item dao to update an existing item  in the database
+            var dao = new ItemDao(Properties.Settings.Default.conString);
+            var item = new Item(int.Parse(drpDepartment.SelectedValue), txtName.Text, hidFinalCoords.Value, txtDescription.Text,
+                float.Parse(txtPrice.Text));
+            Debug.WriteLine("DEP: " +drpDepartment.SelectedValue);
+            Debug.WriteLine("DEP: " + drpDepartment.SelectedValue);
+            Debug.WriteLine("DEP: " + drpDepartment.SelectedValue);
+
             ItemDao dao = new ItemDao(Properties.Settings.Default.conString);
 
-            //Checking the price before using it
             if (!float.TryParse(txtPrice.Text, out float price))
                 price = -1;
 
-            //Creating new Item
             Item item = new Item(int.Parse(drpDepartment.SelectedValue), TxtName.Text, 
                 hidFinalCoords.Value, txtDescription.Text, price);
 

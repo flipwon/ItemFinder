@@ -63,6 +63,7 @@ namespace ItemFinder.User
             Item selectedItem = _items.Find(item =>
                 item.Name.ToUpper().Contains(DrpSearch.SelectedValue.ToUpper()));
             Department selectedDepartment =
+                departments.Find(d => d.StoreId == selectedItem.DepartmentId);
                 _departments.Find(d => d.Id == selectedItem.DepartmentId);
 
             //Showing the items info to the user

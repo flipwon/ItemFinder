@@ -24,6 +24,17 @@ namespace ItemFinder.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                _itemId = Convert.ToInt32(Session["ItemId"]);
+                _departments = _departmentDao.GetDepartments();
+                foreach (Department d in _departments)
+                {
+                    ListItem l = new ListItem(d.Name, _departmentDao.GetDepartmentId(d.Name).ToString());
+                    DrpDepartment.Items.Add(l);
+                }
+
+                DrpDepartment.SelectedIndex = 0;
             //Getting the item id from session from the admin form page
             _itemId = Convert.ToInt32(Session["ItemId"]);
 
@@ -35,15 +46,13 @@ namespace ItemFinder.Admin
             DrpDepartment.DataBind();
             DrpDepartment.SelectedIndex = 0;
 
-            if (!IsPostBack)
-            {
-                //Checking to see if the item in session is null or not
                 if (Session["Item"] is Item item)
                 {
                     //If it isn't null, display item properties to user
                     TxtDescription.Text = item.Description;
                     TxtName.Text = item.Name;
                     TxtPrice.Text = item.Price.ToString();
+                    //DrpDepartment.SelectedIndex = item.DepartmentId;
 
                     //Setting pin location on map
                     SetPin(item.Location);
@@ -98,5 +107,6 @@ namespace ItemFinder.Admin
             //Show the pin to user
             ImgPin.Visible = true;
         }
+
     }
 }
