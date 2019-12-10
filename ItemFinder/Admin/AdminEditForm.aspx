@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ItemFinder.Master" AutoEventWireup="true" CodeBehind="AdminEditForm.aspx.cs" Inherits="ItemFinder.AdminEditForm" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ItemFinder.Master" AutoEventWireup="true" CodeBehind="AdminEditForm.aspx.cs" Inherits="ItemFinder.Admin.AdminEditForm" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
         document.onmousemove = getCoordinate;

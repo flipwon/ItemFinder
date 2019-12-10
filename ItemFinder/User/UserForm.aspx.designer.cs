@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ItemFinder
+namespace ItemFinder.User
 {
 
 

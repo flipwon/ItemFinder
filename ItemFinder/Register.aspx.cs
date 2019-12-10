@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using ItemFinderClassLibrary.Logic;
+﻿/*
+ * Author: Travis Tower
+ * Group Project: Register Code
+ * December 9, 2019
+*/
+
+using System;
+using ItemFinder.DAL;
 
 namespace ItemFinder
 {
@@ -17,20 +18,15 @@ namespace ItemFinder
 
         protected void BtnRegister_OnClick(object sender, EventArgs e)
         {
-            UserDao dao = new UserDao();
+            //Declaring the dao that is needed to access Users
+            var userDao = new UserDao();
 
-            (int, int) result = dao.AddRecord(TxtUser.Text, TxtPassword.Text);
-            LblStatus.Text = "User ID: " + result.Item1 + "Count: " + result.Item2;
+            //Adding the user record to the users table within the database
+            (int, int) result = userDao.AddRecord(TxtUser.Text, TxtPassword.Text);
 
+            //If successful, redirect newly registered user to the login page
             if (result.Item2 > 0)
                 Response.Redirect("/Login.aspx");
-        }
-
-        protected void BtnLogin_OnClick(object sender, EventArgs e)
-        {
-            bool result = LoginHelper.IsUserAuthentic(TxtUser.Text, TxtPassword.Text);
-
-            LblStatus.Text = result ? "Authenticated" : "Not Authenticated";
         }
     }
 }

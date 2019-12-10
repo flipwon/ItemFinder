@@ -45,11 +45,4 @@
     <div>
         <asp:Button runat="server" Id="BtnRegister" Text="Register" OnClick="BtnRegister_OnClick"></asp:Button>
     </div>
-    
-    <div>
-        <asp:Button runat="server" Id="BtnLogin" Text="Login" OnClick="BtnLogin_OnClick"></asp:Button>
-    </div>
-    
-    <asp:Label runat="server" Id="LblStatus" Text=""></asp:Label>
-
 </asp:Content>

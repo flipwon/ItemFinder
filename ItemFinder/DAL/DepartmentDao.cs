@@ -1,44 +1,60 @@
-﻿using System;
+﻿/*
+ * Author: Ivan Pavlov
+ * Group Project: Department Dao Code
+ * December 9, 2019
+*/
+
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ItemFinder;
 using ItemFinder.ItemFinderDataSetTableAdapters;
+using ItemFinderClassLibrary;
 
-namespace ItemFinderClassLibrary.DAL
+namespace ItemFinder.DAL
 {
     public class DepartmentDao
     {
-        private string _conString;
-        DepartmentTableAdapter _tableAdapter = new DepartmentTableAdapter();
+        //Declaring any objects/variables needed
+        private readonly string _conString;
+        readonly DepartmentTableAdapter _tableAdapter = new DepartmentTableAdapter();
 
+        /// <summary>
+        /// Constructor for a Department Dao Object
+        /// </summary>
+        /// <param name="conString">Connection string to a database</param>
         public DepartmentDao(string conString)
         {
+            //Setting the connection string
             _conString = conString;
         }
 
+        /// <summary>
+        /// Method that returns a list of department objects within the
+        /// departments table
+        /// </summary>
+        /// <returns>List of department objects within the
+        /// departments table</returns>
         public List<Department> GetDepartments()
         {
+            //Creating a list of department objects to be returned later on
             List<Department> departments = new List<Department>();
 
-            //open a db connection
+            //Open a DB connection
             SqlConnection con = new SqlConnection(_conString);
             con.Open();
 
-            //create a sql command
-            SqlCommand command = new SqlCommand();
+            //Creating an SQL command
+            var command = new SqlCommand();
             command.CommandType = System.Data.CommandType.Text;
             command.CommandText = "select * from [Department]";
             command.Connection = con;
 
-            //execute command and fetch results
-            SqlDataReader reader = command.ExecuteReader();
+            //Execute command and fetch results
+            var reader = command.ExecuteReader();
 
-            //loop till all records have not been read to populate the list
+            //Loop till all records have not been read to populate the list
             while (reader.Read())
             {
+                //Getting data than adding the new object to the list
                 var name = reader.GetString(2);
                 var storeId = reader.GetInt32(0);
                 var description = reader.GetString(3);
@@ -46,25 +62,32 @@ namespace ItemFinderClassLibrary.DAL
                 departments.Add(new Department(name, storeId, description));
             }
 
-            //close all
+            //Close all connections/readers
             reader.Close();
             con.Close();
 
+            //Return list of departments
             return departments;
         }
 
         /// <summary>
-        /// Get a department ID by name
+        /// Method that gets a department ID by the name of that specific
+        /// department
         /// </summary>
-        /// <param name="name">name</param>
-        /// <returns>Id of dept</returns>
+        /// <param name="name">Department Name</param>
+        /// <returns>Id of department</returns>
         public int GetDepartmentId(string name)
         {
+            ItemFinderDataSet.DepartmentDataTable rows = _tableAdapter.GetData();
+            //Getting all rows in department table
             ItemFinderDataSet.DepartmentDataTable rows = _tableAdapter.GetData();
 
             //cast from datarow to accountsrow
             var filteredRows = (ItemFinderDataSet.DepartmentRow[])rows.Select($"DepartmentName='{name}'");
+            //Cast from DataRow to DepartmentRow
+            var filteredRows = (ItemFinderDataSet.UsersRow[])rows.Select($"Name='{name}'");
 
+            //Returning the Id if the returned length of rows is only 1
             if (filteredRows.Length == 1)
                 return filteredRows[0].DepartmentId;
 

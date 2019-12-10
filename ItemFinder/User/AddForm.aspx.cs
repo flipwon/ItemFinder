@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using ItemFinderClassLibrary;
-using ItemFinderClassLibrary.DAL;
+﻿/*
+ * Author: Travis Tower
+ * Group Project: Add Form Code
+ * December 9, 2019
+*/
 
-namespace ItemFinder
+using System;
+using System.Web.UI;
+using ItemFinder.DAL;
+using ItemFinderClassLibrary;
+
+namespace ItemFinder.User
 {
-    public partial class AddForm : System.Web.UI.Page
+    public partial class AddForm : Page
     {
 
         protected void Page_Load(object sender, EventArgs e)
@@ -30,22 +30,34 @@ namespace ItemFinder
                 drpDepartment.SelectedIndex = 0;
             }
         }
+            //Setting up Dao as well as the list of all departments
+            var depDao = new DepartmentDao(Properties.Settings.Default.conString);
+            var dept = depDao.GetDepartments();
+
+            //Setting the dropdown to the list of departments as well as selecting
+            //a default value from the start
+            drpDepartment.DataTextField = "Name";
+            drpDepartment.DataValueField = "Id";
+            drpDepartment.DataSource = dept;
+            drpDepartment.DataBind();
+            drpDepartment.SelectedIndex = 0;
+        }
 
         protected void ImgMap_OnClick(object sender, ImageClickEventArgs e)
         {
-            //get the image coords
+            //Get the image co-ordinates
             var coords = hidCoords.Value.Split(',');
             hidFinalCoords.Value = hidCoords.Value;
 
-            //offset for the image
-            int x = int.Parse(coords[0]) - 13;
-            int y = int.Parse(coords[1]) - 117;
+            //Offset for the image
+            var x = float.Parse(coords[0]) - 13;
+            var y = float.Parse(coords[1]) - 117;
 
-            //set the pin based on offset coords
+            //Set the pin based on offset coords
             imgPin.Style.Add("Left", x + "px");
             imgPin.Style.Add("Top", y + "px");
 
-            //show the pin
+            //Show the pin
             imgPin.Visible = true;
 
             btnAddItem.Enabled = true;
@@ -53,6 +65,10 @@ namespace ItemFinder
 
         protected void btnAddItem_OnClick(object sender, EventArgs e)
         {
+            //Creating a new item dao to update an existing item  in the database
+            var dao = new ItemDao(Properties.Settings.Default.conString);
+            var item = new Item(int.Parse(drpDepartment.SelectedValue), txtName.Text, hidFinalCoords.Value, txtDescription.Text,
+                float.Parse(txtPrice.Text));
             Debug.WriteLine("DEP: " +drpDepartment.SelectedValue);
             Debug.WriteLine("DEP: " + drpDepartment.SelectedValue);
             Debug.WriteLine("DEP: " + drpDepartment.SelectedValue);
@@ -65,6 +81,7 @@ namespace ItemFinder
             Item item = new Item(int.Parse(drpDepartment.SelectedValue), TxtName.Text, 
                 hidFinalCoords.Value, txtDescription.Text, price);
 
+            //Inserting item table as well as redirecting back to the admin form
             dao.AddItem(item);
         }
     }

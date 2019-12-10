@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="../ItemFinder.Master" CodeBehind="UserForm.aspx.cs" Inherits="ItemFinder.UserForm" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="../ItemFinder.Master" CodeBehind="UserForm.aspx.cs" Inherits="ItemFinder.User.UserForm" %>
 <asp:Content ID="head" ContentPlaceHolderID="head" runat="server">
     
     <style>
