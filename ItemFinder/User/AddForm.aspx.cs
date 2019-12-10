@@ -16,13 +16,19 @@ namespace ItemFinder
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var depDao = new DepartmentDao(Properties.Settings.Default.conString);
-            var dept = depDao.GetDepartments();
-            drpDepartment.DataTextField = "Name";
-            drpDepartment.DataValueField = "Id";
-            drpDepartment.DataSource = dept;
-            drpDepartment.DataBind();
-            drpDepartment.SelectedIndex = 0;
+            if (!IsPostBack)
+            {
+                var depDao = new DepartmentDao(Properties.Settings.Default.conString);
+                var dept = depDao.GetDepartments();
+                dept = depDao.GetDepartments();
+                foreach (Department d in dept)
+                {
+                    ListItem l = new ListItem(d.Name, depDao.GetDepartmentId(d.Name).ToString());
+                    drpDepartment.Items.Add(l);
+                }
+
+                drpDepartment.SelectedIndex = 0;
+            }
         }
 
         protected void ImgMap_OnClick(object sender, ImageClickEventArgs e)
@@ -47,6 +53,10 @@ namespace ItemFinder
 
         protected void btnAddItem_OnClick(object sender, EventArgs e)
         {
+            Debug.WriteLine("DEP: " +drpDepartment.SelectedValue);
+            Debug.WriteLine("DEP: " + drpDepartment.SelectedValue);
+            Debug.WriteLine("DEP: " + drpDepartment.SelectedValue);
+
             ItemDao dao = new ItemDao(Properties.Settings.Default.conString);
 
             if (!float.TryParse(txtPrice.Text, out float price))

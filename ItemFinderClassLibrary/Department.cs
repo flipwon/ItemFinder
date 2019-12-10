@@ -16,7 +16,7 @@ namespace ItemFinderClassLibrary
         public Department(string name, int id, string description)
         {
             Name = name;
-            Id = id;
+            StoreId = id;
             Description = description;
         }
 
@@ -26,7 +26,7 @@ namespace ItemFinderClassLibrary
             set => _name = value;
         }
         
-        public int Id
+        public int StoreId
         {
             get => _id;
             set => _id = value;

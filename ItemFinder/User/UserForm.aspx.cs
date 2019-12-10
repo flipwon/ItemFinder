@@ -52,7 +52,7 @@ namespace ItemFinder
             Item selectedItem = items.Find(item =>
                 item.Name.ToUpper().Contains(DrpSearch.SelectedValue.ToUpper()));
             Department selectedDepartment =
-                departments.Find(d => d.Id == selectedItem.DepartmentId);
+                departments.Find(d => d.StoreId == selectedItem.DepartmentId);
             LblName.Text = selectedItem.Name;
             LblDept.Text = selectedDepartment.Name;
 

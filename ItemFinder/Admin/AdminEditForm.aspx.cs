@@ -21,21 +21,24 @@ namespace ItemFinder
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            _itemId = Convert.ToInt32(Session["ItemId"]);
-            _departments = _departmentDao.GetDepartments();
-            DrpDepartment.DataTextField = "Name";
-            DrpDepartment.DataValueField = "Id";
-            DrpDepartment.DataSource = _departments;
-            DrpDepartment.DataBind();
-            DrpDepartment.SelectedIndex = 0;
-
             if (!IsPostBack)
             {
+                _itemId = Convert.ToInt32(Session["ItemId"]);
+                _departments = _departmentDao.GetDepartments();
+                foreach (Department d in _departments)
+                {
+                    ListItem l = new ListItem(d.Name, _departmentDao.GetDepartmentId(d.Name).ToString());
+                    DrpDepartment.Items.Add(l);
+                }
+
+                DrpDepartment.SelectedIndex = 0;
+
                 if (Session["Item"] is Item item)
                 {
                     TxtDescription.Text = item.Description;
                     TxtName.Text = item.Name;
                     TxtPrice.Text = item.Price.ToString();
+                    //DrpDepartment.SelectedIndex = item.DepartmentId;
                     SetPin(item.Location);
                     hidFinalCoords.Value = item.Location;
                 }
@@ -79,5 +82,6 @@ namespace ItemFinder
             //show the pin
             ImgPin.Visible = true;
         }
+
     }
 }

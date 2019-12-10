@@ -40,10 +40,10 @@ namespace ItemFinderClassLibrary.DAL
             while (reader.Read())
             {
                 var name = reader.GetString(2);
-                var departmentId = reader.GetInt32(0);
+                var storeId = reader.GetInt32(0);
                 var description = reader.GetString(3);
 
-                departments.Add(new Department(name, departmentId, description));
+                departments.Add(new Department(name, storeId, description));
             }
 
             //close all
@@ -60,14 +60,13 @@ namespace ItemFinderClassLibrary.DAL
         /// <returns>Id of dept</returns>
         public int GetDepartmentId(string name)
         {
-
-             ItemFinderDataSet.DepartmentDataTable rows = _tableAdapter.GetData();
+            ItemFinderDataSet.DepartmentDataTable rows = _tableAdapter.GetData();
 
             //cast from datarow to accountsrow
-            var filteredRows = (ItemFinderDataSet.UsersRow[])rows.Select($"Name='{name}'");
+            var filteredRows = (ItemFinderDataSet.DepartmentRow[])rows.Select($"DepartmentName='{name}'");
 
             if (filteredRows.Length == 1)
-                return filteredRows[0].Id;
+                return filteredRows[0].DepartmentId;
 
             return -1;
         }
