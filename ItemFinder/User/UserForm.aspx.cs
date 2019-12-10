@@ -1,30 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using ItemFinder.ItemFinderDataSetTableAdapters;
-using ItemFinderClassLibrary;
-using ItemFinderClassLibrary.DAL;
+﻿/*
+ * Author: Ivan Pavlov
+ * Group Project: User Form Code
+ * December 9, 2019
+*/
 
-namespace ItemFinder
+using System;
+using System.Collections.Generic;
+using ItemFinder.DAL;
+using ItemFinderClassLibrary;
+
+namespace ItemFinder.User
 {
     public partial class UserForm : System.Web.UI.Page
     {
-        ItemDao itemDao = new ItemDao(Properties.Settings.Default.conString);
-        DepartmentDao departmentDao = new DepartmentDao(Properties.Settings.Default.conString);
-        List<Item> items = new List<Item>();
-        List<Department> departments = new List<Department>();
-
-        private string location;
+        //Declaring any objects needed
+        readonly ItemDao _itemDao = new ItemDao(Properties.Settings.Default.conString);
+        readonly DepartmentDao _departmentDao = new DepartmentDao(Properties.Settings.Default.conString);
+        List<Item> _items = new List<Item>();
+        List<Department> _departments = new List<Department>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            departments = departmentDao.GetDepartments();
-            items = itemDao.GetItems();
+            //Getting a list of all departments and items in the database
+            _departments = _departmentDao.GetDepartments();
+            _items = _itemDao.GetItems();
+
             if (!IsPostBack)
             {
                 
@@ -33,55 +33,68 @@ namespace ItemFinder
 
         protected void TxtSearch_OnTextChanged(object sender, EventArgs e)
         {
+            //Setting all the labels visibility to false until data is gathered
             LblName.Visible = false;
             LblDept.Visible = false;
             LblDesc.Visible = false;
             LblPrice.Visible = false;
 
-            List<Item> filteredItems = items.FindAll(item => item.Name.ToUpper().Contains(TxtSearch.Text.ToUpper()));
-            LblName.Text = filteredItems[0].Name;
+            //Filtering the list of items based on what the user searches for
+            List<Item> filteredItems = _items.FindAll(item => item.Name.ToUpper().Contains(TxtSearch.Text.ToUpper()));
+
+            //Setting the DropDown to only the items that fit the search criteria
             DrpSearch.DataTextField = "Name";
             DrpSearch.DataValueField = "Name";
             DrpSearch.DataSource = filteredItems;
             DrpSearch.DataBind();
             DrpSearch.SelectedIndex = 0;
-            LblName.Text = DrpSearch.SelectedValue;
         }
 
         protected void BtnSearch_OnClick(object sender, EventArgs e)
         {
+            //Setting all labels visibility to true
             LblName.Visible = true;
             LblDept.Visible = true;
             LblDesc.Visible = true;
             LblPrice.Visible = true;
-            Item selectedItem = items.Find(item =>
+
+            //Finding both the selected item and department for the item the user chose
+            Item selectedItem = _items.Find(item =>
                 item.Name.ToUpper().Contains(DrpSearch.SelectedValue.ToUpper()));
             Department selectedDepartment =
-                departments.Find(d => d.Id == selectedItem.DepartmentId);
+                _departments.Find(d => d.Id == selectedItem.DepartmentId);
+
+            //Showing the items info to the user
             LblName.Text = selectedItem.Name;
             LblDept.Text = selectedDepartment.Name;
             LblDesc.Text = selectedItem.Description;
             LblPrice.Text = selectedItem.Price.ToString();
+
+            //Displaying the pin on the map to where that item is found
             SetPin(selectedItem.Location);
         }
 
-
-        void SetPin(string coordString)
+        /// <summary>
+        /// Method that takes in a coordinate string and puts a pin to
+        /// where that item is located on the map
+        /// </summary>
+        /// <param name="cordString">X and Y coordinates</param>
+        private void SetPin(string cordString)
         {
 
-            //get the image coords
-            var coords = coordString.Split(',');
+            //Get the image coords
+            var coords = cordString.Split(',');
             hidFinalCoords.Value = hidCoords.Value;
-            Debug.WriteLine(coords[0] + "," + coords[1]);
-            //offset for the image
-            float x = float.Parse(coords[0]) - 13;
-            float y = float.Parse(coords[1]) - 117;
+           
+            //Offset for the image
+            var x = float.Parse(coords[0]) - 13;
+            var y = float.Parse(coords[1]) - 117;
 
-            //set the pin based on offset coords
+            //Set the pin based on offset coords
             imgPin.Style.Add("Left", x + "px");
             imgPin.Style.Add("Top", y + "px");
 
-            //show the pin
+            //Show the pin
             imgPin.Visible = true;
         }
     }

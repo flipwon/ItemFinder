@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using ItemFinderClassLibrary;
-using ItemFinderClassLibrary.DAL;
+﻿/*
+ * Author: Ivan Pavlov
+ * Group Project: Admin Edit Form Code
+ * December 9, 2019
+*/
 
-namespace ItemFinder
+using System;
+using System.Collections.Generic;
+using System.Web.UI;
+using ItemFinder.DAL;
+using ItemFinderClassLibrary;
+
+namespace ItemFinder.Admin
 {
-    public partial class AdminEditForm : System.Web.UI.Page
+    public partial class AdminEditForm : Page
     {
-        DepartmentDao _departmentDao =
+        //Declaring any objects/variables needed
+        readonly DepartmentDao _departmentDao =
             new DepartmentDao(Properties.Settings.Default.conString);
 
         List<Department> _departments = new List<Department>();
@@ -21,20 +24,28 @@ namespace ItemFinder
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Getting the item id from session from the admin form page
             _itemId = Convert.ToInt32(Session["ItemId"]);
+
+            //Setting the dropdown to all the departments from the Departments table
             _departments = _departmentDao.GetDepartments();
+            DrpDepartment.DataSource = _departments;
             DrpDepartment.DataTextField = "Name";
             DrpDepartment.DataValueField = "Id";
-            DrpDepartment.DataSource = _departments;
             DrpDepartment.DataBind();
             DrpDepartment.SelectedIndex = 0;
+
             if (!IsPostBack)
             {
+                //Checking to see if the item in session is null or not
                 if (Session["Item"] is Item item)
                 {
+                    //If it isn't null, display item properties to user
                     TxtDescription.Text = item.Description;
                     TxtName.Text = item.Name;
                     TxtPrice.Text = item.Price.ToString();
+
+                    //Setting pin location on map
                     SetPin(item.Location);
                 }
             }
@@ -42,35 +53,44 @@ namespace ItemFinder
 
         protected void ImgMap_OnClick(object sender, ImageClickEventArgs e)
         {
+            //Setting the pin location to where the user clicked
             SetPin(hidCoords.Value);
         }
 
         protected void BtnUpdateItem_OnClick(object sender, EventArgs e)
         {
+            //Creating a new item dao to update an existing item  in the database
             var dao = new ItemDao(Properties.Settings.Default.conString);
             var item = new Item(int.Parse(DrpDepartment.SelectedValue),
                 TxtName.Text, hidFinalCoords.Value, TxtDescription.Text,
                 float.Parse(TxtPrice.Text));
 
+            //Updating item table as well as redirecting back to the admin form
             dao.UpdateItem(item, _itemId);
             Response.Redirect("/Admin/AdminForm.aspx");
         }
 
-        void SetPin(string coordString)
+        /// <summary>
+        /// Method that will set the pin image to wherever the user clicked on the store map
+        /// </summary>
+        /// <param name="cordString">String representation of the position the user clicked
+        /// on the screen</param>
+        void SetPin(string cordString)
         {
             hidFinalCoords.Value = hidCoords.Value;
-            //get the image coords
-            var coords = coordString.Split(',');
+            
+            //Get the image coords
+            var coords = cordString.Split(',');
 
-            //offset for the image
-            float x = float.Parse(coords[0]) - 13;
-            float y = float.Parse(coords[1]) - 117;
+            //Offset for the image
+            var x = float.Parse(coords[0]) - 13;
+            var y = float.Parse(coords[1]) - 117;
 
-            //set the pin based on offset coords
+            //Sets the pin based on offset coords
             ImgPin.Style.Add("Left", x + "px");
             ImgPin.Style.Add("Top", y + "px");
 
-            //show the pin
+            //Show the pin to user
             ImgPin.Visible = true;
         }
     }

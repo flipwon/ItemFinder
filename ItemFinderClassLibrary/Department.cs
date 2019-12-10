@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+ * Author: Ivan Pavlov
+ * Group Project: Department Class
+ * December 9, 2019
+*/
 
 namespace ItemFinderClassLibrary
 {
     public class Department
     {
-        private string _name;
-        private int _id;
-        private string _description;
-        private List<Item> _itemList = new List<Item>();
-
+        /// <summary>
+        /// Constructor for a department object
+        /// </summary>
+        /// <param name="name">Department name</param>
+        /// <param name="id">Department id</param>
+        /// <param name="description">Department description</param>
         public Department(string name, int id, string description)
         {
             Name = name;
@@ -20,23 +21,11 @@ namespace ItemFinderClassLibrary
             Description = description;
         }
 
-        public string Name
-        {
-            get => _name;
-            set => _name = value;
-        }
-        
-        public int Id
-        {
-            get => _id;
-            set => _id = value;
-        }
+        //All auto properties for the department class
+        public string Name { get; set; }
 
-        public string Description
-        {
-            get => _description;
-            set => _description = value;
-        }
+        public int Id { get; set; }
 
+        public string Description { get; set; }
     }
 }

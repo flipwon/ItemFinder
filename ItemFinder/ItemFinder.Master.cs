@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿/*
+ * Author: Ivan Pavlov
+ * Group Project: Master Web Page Code
+ * December 9, 2019
+*/
+
+using System;
 using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace ItemFinder
 {
-    public partial class ItemFinder : System.Web.UI.MasterPage
+    public partial class ItemFinder : MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
