@@ -19,8 +19,12 @@ namespace ItemFinder.User
         List<Item> _items = new List<Item>();
         List<Department> _departments = new List<Department>();
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            departments = departmentDao.GetDepartments();
+            items = itemDao.GetItems();
+        }
             //Getting a list of all departments and items in the database
             _departments = _departmentDao.GetDepartments();
             _items = _itemDao.GetItems();
@@ -67,10 +71,17 @@ namespace ItemFinder.User
             //Showing the items info to the user
             LblName.Text = selectedItem.Name;
             LblDept.Text = selectedDepartment.Name;
-            LblDesc.Text = selectedItem.Description;
-            LblPrice.Text = selectedItem.Price.ToString();
 
-            //Displaying the pin on the map to where that item is found
+            if (!string.IsNullOrEmpty(selectedItem.Description))
+                LblDesc.Text = selectedItem.Description;
+            else
+                LblDesc.Text = "-";
+            
+            if (selectedItem.Price != -1)
+                LblPrice.Text = selectedItem.Price.ToString();
+            else
+                LblPrice.Text = "-";
+
             SetPin(selectedItem.Location);
         }
 

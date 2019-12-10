@@ -45,6 +45,8 @@ namespace ItemFinder.User
 
             //Show the pin
             imgPin.Visible = true;
+
+            btnAddItem.Enabled = true;
         }
 
         protected void btnAddItem_OnClick(object sender, EventArgs e)
@@ -53,6 +55,13 @@ namespace ItemFinder.User
             var dao = new ItemDao(Properties.Settings.Default.conString);
             var item = new Item(int.Parse(drpDepartment.SelectedValue), txtName.Text, hidFinalCoords.Value, txtDescription.Text,
                 float.Parse(txtPrice.Text));
+            ItemDao dao = new ItemDao(Properties.Settings.Default.conString);
+
+            if (!float.TryParse(txtPrice.Text, out float price))
+                price = -1;
+
+            Item item = new Item(int.Parse(drpDepartment.SelectedValue), TxtName.Text, 
+                hidFinalCoords.Value, txtDescription.Text, price);
 
             //Inserting item table as well as redirecting back to the admin form
             dao.AddItem(item);

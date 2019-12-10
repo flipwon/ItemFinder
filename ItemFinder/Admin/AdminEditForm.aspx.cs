@@ -47,6 +47,7 @@ namespace ItemFinder.Admin
 
                     //Setting pin location on map
                     SetPin(item.Location);
+                    hidFinalCoords.Value = item.Location;
                 }
             }
         }
@@ -61,9 +62,13 @@ namespace ItemFinder.Admin
         {
             //Creating a new item dao to update an existing item  in the database
             var dao = new ItemDao(Properties.Settings.Default.conString);
+
+            if (!float.TryParse(TxtPrice.Text, out float price))
+                price = -1;
+
             var item = new Item(int.Parse(DrpDepartment.SelectedValue),
                 TxtName.Text, hidFinalCoords.Value, TxtDescription.Text,
-                float.Parse(TxtPrice.Text));
+                price);
 
             //Updating item table as well as redirecting back to the admin form
             dao.UpdateItem(item, _itemId);

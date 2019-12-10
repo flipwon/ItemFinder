@@ -56,9 +56,9 @@
 
     <div>
         <label>Name</label>
-        <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TxtName" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="ValName" runat="server"
-                                    ControlToValidate="txtName" Display="Dynamic"
+                                    ControlToValidate="TxtName" Display="Dynamic"
                                     ErrorMessage="Name required"></asp:RequiredFieldValidator>
     </div>
     
@@ -77,6 +77,6 @@
     </div>
 
     
-    <asp:Button ID="btnAddItem" runat="server" Text="Add Item" OnClick="btnAddItem_OnClick" />
+    <asp:Button ID="btnAddItem" runat="server" Text="Add Item" OnClick="btnAddItem_OnClick" Enabled="False" />
 
 </asp:Content>
