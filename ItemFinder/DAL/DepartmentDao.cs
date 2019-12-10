@@ -55,8 +55,8 @@ namespace ItemFinder.DAL
             while (reader.Read())
             {
                 //Getting data than adding the new object to the list
-                var name = reader.GetString(2);
                 var departmentId = reader.GetInt32(0);
+                var name = reader.GetString(2);
                 var description = reader.GetString(3);
 
                 departments.Add(new Department(name, departmentId, description));

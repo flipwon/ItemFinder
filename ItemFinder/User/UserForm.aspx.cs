@@ -22,9 +22,6 @@ namespace ItemFinder.User
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            departments = departmentDao.GetDepartments();
-            items = itemDao.GetItems();
-        }
             //Getting a list of all departments and items in the database
             _departments = _departmentDao.GetDepartments();
             _items = _itemDao.GetItems();
