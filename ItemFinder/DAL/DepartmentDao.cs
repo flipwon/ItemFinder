@@ -78,14 +78,12 @@ namespace ItemFinder.DAL
         /// <returns>Id of department</returns>
         public int GetDepartmentId(string name)
         {
-            ItemFinderDataSet.DepartmentDataTable rows = _tableAdapter.GetData();
+
             //Getting all rows in department table
             ItemFinderDataSet.DepartmentDataTable rows = _tableAdapter.GetData();
 
-            //cast from datarow to accountsrow
-            var filteredRows = (ItemFinderDataSet.DepartmentRow[])rows.Select($"DepartmentName='{name}'");
             //Cast from DataRow to DepartmentRow
-            var filteredRows = (ItemFinderDataSet.UsersRow[])rows.Select($"Name='{name}'");
+            var filteredRows = (ItemFinderDataSet.DepartmentRow[])rows.Select($"DepartmentName='{name}'");
 
             //Returning the Id if the returned length of rows is only 1
             if (filteredRows.Length == 1)

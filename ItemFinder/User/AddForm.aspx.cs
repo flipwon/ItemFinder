@@ -5,9 +5,13 @@
 */
 
 using System;
+using System.Diagnostics;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using ItemFinder.DAL;
 using ItemFinderClassLibrary;
+using System.Windows.Forms;
+
 
 namespace ItemFinder.User
 {
@@ -16,11 +20,15 @@ namespace ItemFinder.User
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Setting up Dao as well as the list of all departments
             if (!IsPostBack)
             {
                 var depDao = new DepartmentDao(Properties.Settings.Default.conString);
                 var dept = depDao.GetDepartments();
                 dept = depDao.GetDepartments();
+
+                //Setting the dropdown to the list of departments as well as selecting
+                //a default value from the start
                 foreach (Department d in dept)
                 {
                     ListItem l = new ListItem(d.Name, depDao.GetDepartmentId(d.Name).ToString());
@@ -29,18 +37,7 @@ namespace ItemFinder.User
 
                 drpDepartment.SelectedIndex = 0;
             }
-        }
-            //Setting up Dao as well as the list of all departments
-            var depDao = new DepartmentDao(Properties.Settings.Default.conString);
-            var dept = depDao.GetDepartments();
-
-            //Setting the dropdown to the list of departments as well as selecting
-            //a default value from the start
-            drpDepartment.DataTextField = "Name";
-            drpDepartment.DataValueField = "Id";
-            drpDepartment.DataSource = dept;
-            drpDepartment.DataBind();
-            drpDepartment.SelectedIndex = 0;
+        
         }
 
         protected void ImgMap_OnClick(object sender, ImageClickEventArgs e)
@@ -66,13 +63,6 @@ namespace ItemFinder.User
         protected void btnAddItem_OnClick(object sender, EventArgs e)
         {
             //Creating a new item dao to update an existing item  in the database
-            var dao = new ItemDao(Properties.Settings.Default.conString);
-            var item = new Item(int.Parse(drpDepartment.SelectedValue), txtName.Text, hidFinalCoords.Value, txtDescription.Text,
-                float.Parse(txtPrice.Text));
-            Debug.WriteLine("DEP: " +drpDepartment.SelectedValue);
-            Debug.WriteLine("DEP: " + drpDepartment.SelectedValue);
-            Debug.WriteLine("DEP: " + drpDepartment.SelectedValue);
-
             ItemDao dao = new ItemDao(Properties.Settings.Default.conString);
 
             if (!float.TryParse(txtPrice.Text, out float price))
@@ -83,6 +73,9 @@ namespace ItemFinder.User
 
             //Inserting item table as well as redirecting back to the admin form
             dao.AddItem(item);
+
+            MessageBox.Show("Item added successfully.", "Item Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Response.Redirect("/User/UserForm.aspx");
         }
     }
 }

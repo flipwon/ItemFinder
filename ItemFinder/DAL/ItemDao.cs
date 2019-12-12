@@ -197,7 +197,9 @@ namespace ItemFinder.DAL
             //Creating connection, query, and adapter for the database
             var conn = new SqlConnection(_conString);
             var adapter = new SqlDataAdapter();
-            var sql = "Update [Item] set DepartmentId = '" + item.DepartmentId + "', ItemName = '" + item.Name + "', ItemLocation = '" + item.Location + "', ItemDesc = '" + item.Description + "', ItemPrice = '" + item.Price + "' where ItemId = '" + id + "'";
+            var sql = "Update [Item] set DepartmentId = '" + item.DepartmentId + "', ItemName = '" + item.Name + 
+                      "', ItemLocation = '" + item.Location + "', ItemDesc = '" + item.Description + 
+                      "', ItemPrice = '" + item.Price + "' where ItemId = '" + id + "'";
 
             //Creating command based on the SQL string above
             var command = new SqlCommand(sql, conn);

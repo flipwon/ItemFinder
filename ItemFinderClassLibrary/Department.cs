@@ -21,21 +21,10 @@ namespace ItemFinderClassLibrary
             Description = description;
         }
 
-        public string Name
-        {
-            get => _name;
-            set => _name = value;
-        }
-        
-        public int StoreId
-        {
-            get => _id;
-            set => _id = value;
-        }
         //All auto properties for the department class
         public string Name { get; set; }
 
-        public int Id { get; set; }
+        public int StoreId { get; set; }
 
         public string Description { get; set; }
     }

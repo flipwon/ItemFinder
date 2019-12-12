@@ -39,6 +39,9 @@
     <div>
         <label>Search</label>
         <asp:TextBox ID="TxtSearch" runat="server" OnTextChanged="TxtSearch_OnTextChanged" AutoPostBack="True"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator" runat="server"
+                                    ControlToValidate="TxtSearch" Display="Dynamic"
+                                    ErrorMessage="Please enter a search string."></asp:RequiredFieldValidator>
         <asp:DropDownList ID="DrpSearch" runat="server"></asp:DropDownList>
     </div>
 

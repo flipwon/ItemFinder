@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using ItemFinder.DAL;
 using ItemFinderClassLibrary;
 
@@ -26,26 +27,17 @@ namespace ItemFinder.Admin
         {
             if (!IsPostBack)
             {
-                _itemId = Convert.ToInt32(Session["ItemId"]);
+                //Setting the department dropdowns
                 _departments = _departmentDao.GetDepartments();
                 foreach (Department d in _departments)
                 {
                     ListItem l = new ListItem(d.Name, _departmentDao.GetDepartmentId(d.Name).ToString());
                     DrpDepartment.Items.Add(l);
                 }
-
                 DrpDepartment.SelectedIndex = 0;
-            //Getting the item id from session from the admin form page
-            _itemId = Convert.ToInt32(Session["ItemId"]);
 
-            //Setting the dropdown to all the departments from the Departments table
-            _departments = _departmentDao.GetDepartments();
-            DrpDepartment.DataSource = _departments;
-            DrpDepartment.DataTextField = "Name";
-            DrpDepartment.DataValueField = "Id";
-            DrpDepartment.DataBind();
-            DrpDepartment.SelectedIndex = 0;
-
+                //Getting the item id from session from the admin form page
+                _itemId = Convert.ToInt32(Session["ItemId"]);
                 if (Session["Item"] is Item item)
                 {
                     //If it isn't null, display item properties to user
@@ -55,8 +47,9 @@ namespace ItemFinder.Admin
                     //DrpDepartment.SelectedIndex = item.DepartmentId;
 
                     //Setting pin location on map
-                    SetPin(item.Location);
                     hidFinalCoords.Value = item.Location;
+                    SetPin(item.Location);
+                    
                 }
             }
         }
