@@ -22,9 +22,6 @@ namespace ItemFinder.User
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            _departments = _departmentDao.GetDepartments();
-            _items = _itemDao.GetItems();
-        
             //Getting a list of all departments and items in the database
             _departments = _departmentDao.GetDepartments();
             _items = _itemDao.GetItems();
@@ -66,8 +63,8 @@ namespace ItemFinder.User
             Item selectedItem = _items.Find(item =>
                 item.Name.ToUpper().Contains(DrpSearch.SelectedValue.ToUpper()));
             Department selectedDepartment =
-                _departments.Find(d => d.StoreId == selectedItem.DepartmentId);
-
+                departments.Find(d => d.StoreId == selectedItem.DepartmentId);
+                _departments.Find(d => d.Id == selectedItem.DepartmentId);
 
             //Showing the items info to the user
             LblName.Text = selectedItem.Name;
